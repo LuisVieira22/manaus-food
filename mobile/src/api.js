@@ -1,9 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+﻿import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ALTERE AQUI:
-// - Emulador Android: http://10.0.2.2:3000
-// - Celular físico (Expo Go): http://IP_DO_SEU_PC:3000  (descubra com `ipconfig`, ex.: 192.168.0.15)
-export const API_URL = 'http://10.0.2.2:3000';
+// - Emulador Android: https://manaus-food.onrender.com
+// - Celular fÃ­sico (Expo Go): http://IP_DO_SEU_PC:3000  (descubra com `ipconfig`, ex.: 192.168.0.15)
+export const API_URL = 'https://manaus-food.onrender.com';
 
 export async function api(path, { method = 'GET', body } = {}) {
   const token = await AsyncStorage.getItem('token');
@@ -18,10 +18,10 @@ export async function api(path, { method = 'GET', body } = {}) {
       body: body ? JSON.stringify(body) : undefined,
     });
   } catch {
-    throw new Error('Não foi possível conectar ao servidor. Verifique a API_URL e se o backend está rodando.');
+    throw new Error('NÃ£o foi possÃ­vel conectar ao servidor. Verifique a API_URL e se o backend estÃ¡ rodando.');
   }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.erro || 'Erro na requisição');
+  if (!res.ok) throw new Error(data.erro || 'Erro na requisiÃ§Ã£o');
   return data;
 }
 
